@@ -9,6 +9,10 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] > 15) {
     header('Location: page_admin.php');
     exit();
 }
+if (isset($_COOKIE['authTokenUser']) && $_COOKIE['authTokenUser'] > 15) {
+    header('Location: page_user.php');
+    exit();
+}
 
 // Gérer la soumission du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,6 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($username === 'admin' && $password === 'secret') {
         setcookie('authToken', bin2hex(random_bytes(16)), time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
         header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
+        exit();
+    } else if ($username ==='user' && $password === 'utilisateur'){
+        setcookie('authToken', bin2hex(random_bytes(16)), time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
+        header('Location: page_user.php'); // L'utilisateur est dirigé vers la page home.php
         exit();
     } else {
         $error = "Nom d'utilisateur ou mot de passe incorrect.";
@@ -37,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1>Atelier authentification par Cookie</h1>
     <h3>La page <a href="page_admin.php">page_admin.php</a> est inaccéssible tant que vous ne vous serez pas connecté avec le login 'admin' et mot de passe 'secret'</h3>
+    <h3>La page <a href="page_user.php">page_user.php</a> est inaccéssible tant que vous ne vous serez pas connecté avec le login 'user' et mot de passe 'utilisateur'</h3>
     <form method="POST" action="">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" id="username" name="username" required>
