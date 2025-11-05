@@ -2,6 +2,8 @@
 // Démarrer la session
 session_start();
 
+$counter = 1 + $counter;
+
 // Vérifier si l'utilisateur s'est bienconnecté
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: index.php'); // Dans le cas contraire, l'utilisateur sera redirigé vers la page de connexion
@@ -19,6 +21,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <body>
     <h1>Bienvenue sur la page administrateur de l'atelier 3</h1>
     <p>Vous êtes connecté en tant que : <?php echo htmlspecialchars($_SESSION['username']); ?></p>
+    <p>Vous vous êtes connecté : <?php echo htmlspecialchars($counter); ?> fois</p>
     <a href="logout.php">Se déconnecter</a>
 </body>
 </html>
