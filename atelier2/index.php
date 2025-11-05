@@ -9,7 +9,7 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] > 15) {
     header('Location: page_admin.php');
     exit();
 }
-if (isset($_COOKIE['authToken']) && $_COOKIE['authTokenUser'] > 15) {
+if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] > 15) {
     header('Location: page_user.php');
     exit();
 }
