@@ -9,7 +9,7 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] > 15) {
     header('Location: page_admin.php');
     exit();
 }
-if (isset($_COOKIE['authTokenUser']) && $_COOKIE['authTokenUser'] > 15) {
+if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] > 15) {
     header('Location: page_user.php');
     exit();
 }
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
         exit();
     } else if ($username ==='user' && $password === 'utilisateur'){
-        setcookie('authTokenUser', bin2hex(random_bytes(16)), time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
+        setcookie('authToken', bin2hex(random_bytes(16)), time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
         header('Location: page_user.php'); // L'utilisateur est dirigé vers la page home.php
         exit();
     } else {
